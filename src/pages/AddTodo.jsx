@@ -1,36 +1,37 @@
-import React, {useState, useContext} from 'react'
-import { todoContext } from '../TodoContext'
-import { Link } from "react-router-dom";
-
+import React, { useState, useContext } from "react";
+import { todoContext } from "../TodoContext";
+import uuid from "react-uuid";
+import Navbar from '../components/navbar'
 
 function AddTodo() {
+  const { todos, settodos } = useContext(todoContext);
 
-    const { todos, settodos } = useContext(todoContext)
+  const [todo, setTodo] = useState({
+    id: 0,
+    text: "",
+    isComplete: false,
+  });
+  const addTodo = (e) => {
+    e.preventDefault();
+    settodos([...todos, todo]);
+    setTodo({text: ''})
+  };
 
-    const [todo, setTodo] = useState({
-        id: 0,
-        text: '',
-        isComplete: false
-    });
-    const addTodo = (e) =>{
-        e.preventDefault()
-        settodos([...todos, todo])
-    }
-
-    return (
-        <>
-        <nav>
-            <Link to='/'>Home</Link>
-            <Link to='/add'>Add</Link>
-            <Link to='/completed'>Completed</Link>
-        </nav>
-            <form onSubmit={(e)=> addTodo(e)}>
-                <input type='text' onChange={(e)=> setTodo({text : e.target.value, isComplete: false, id: Math.floor(Math.random() *1000000)})}/>
-                <button type='submit'>Add</button>
-            </form>
-        
-        </>
-    )
+  return (
+    <>
+      <Navbar/>
+      <form onSubmit={(e) => addTodo(e)}>
+        <input
+          type="text"
+          value={todo.text}
+          onChange={(e) => {
+            setTodo({ text: e.target.value, isComplete: false, id: uuid() });
+          }}
+        />
+        <button type="submit">Add</button>
+      </form>
+    </>
+  );
 }
 
-export default AddTodo
+export default AddTodo;

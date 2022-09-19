@@ -9,6 +9,7 @@ import CompletedTodo from './pages/CompletedTodos';
 function App() {
   return (
     <>
+    <div style={{width: '87%', margin: 'auto', paddingTop: '20px'}}>
       <TodoProvider>
         <Routes>
           <Route path="/" element={<Todos />} />
@@ -16,6 +17,7 @@ function App() {
           <Route path="/completed" element={<CompletedTodo />} />
         </Routes>
       </TodoProvider>
+    </div>
     </>
   );
 }

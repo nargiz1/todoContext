@@ -1,38 +1,30 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { todoContext } from '../TodoContext'
-import TodoItem from '../components/todoItem'
+import { todoContext } from "../TodoContext";
+import Navbar from "../components/navbar";
 
 function Todos() {
-    const { todos, settodos } = useContext(todoContext)
-    return (
-        <>
-            <nav>
-                <Link to='/'>Home</Link>
-                <Link to='/add'>Add</Link>
-                <Link to='/completed'>Completed</Link>
-            </nav>
+  const { todos, completeTask } = useContext(todoContext);
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ToDo</th>
-                        <th>IsComplete?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        todos.map((todo) => (
-                            <tr key={todo.id}>
-                                <td>{todo.text}</td>
-                                <td><input type='checkbox' checked={todo.isComplete} /></td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </> 
-    )
+  return (
+    <>
+      <Navbar />
+
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>
+            {todo.text}
+            <input
+            style={{marginLeft: '10px'}}
+              type="checkbox"
+              checked={todo.isComplete}
+              onChange={() => completeTask(todo.id)}
+            />
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
-export default Todos
+export default Todos;
