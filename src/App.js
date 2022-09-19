@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { TodoProvider } from './TodoContext';
+import { Route, Routes } from "react-router";
+import Todos from './pages/Todos';
+import AddTodo from './pages/AddTodo';
+import CompletedTodo from './pages/CompletedTodos';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TodoProvider>
+        <Routes>
+          <Route path="/" element={<Todos />} />
+          <Route path="/add" element={<AddTodo />} />
+          <Route path="/completed" element={<CompletedTodo />} />
+        </Routes>
+      </TodoProvider>
+    </>
   );
 }
 
