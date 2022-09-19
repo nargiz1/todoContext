@@ -25,13 +25,13 @@ function Todos() {
                         todos.map((todo) => (
                             <tr key={todo.id}>
                                 <td>{todo.text}</td>
-                                <td><input type='checkbox' /></td>
+                                <td><input type='checkbox' checked={todo.isComplete} /></td>
                             </tr>
                         ))
                     }
                 </tbody>
             </table>
-        </>
+        </> 
     )
 }
 

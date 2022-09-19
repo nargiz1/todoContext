@@ -25,7 +25,7 @@ function AddTodo() {
             <Link to='/completed'>Completed</Link>
         </nav>
             <form onSubmit={(e)=> addTodo(e)}>
-                <input type='text' onChange={(e)=> setTodo({text : e.target.value, isComplete: true, id: Math.floor(Math.random() *1000000)})}/>
+                <input type='text' onChange={(e)=> setTodo({text : e.target.value, isComplete: false, id: Math.floor(Math.random() *1000000)})}/>
                 <button type='submit'>Add</button>
             </form>
         
